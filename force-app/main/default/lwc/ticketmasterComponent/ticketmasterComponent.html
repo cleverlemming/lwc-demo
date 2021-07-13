@@ -1,0 +1,26 @@
+
+<template>
+    <lightning-card >
+        <lightning-layout>
+            <template if:true={boolShowSpinner}>
+                <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+            </template>
+            <template if:false={hasEvents}>
+            <h4>Location Data not Available</h4>
+        </template>
+            <template if:true={eventPayload}>   
+                <lightning-carousel disable-auto-scroll>
+                    <template for:each={parsedEventArray} for:item="evt">
+                        <lightning-carousel-image
+                            key={evt.id}
+                            src = {evt.picUrl}
+                            header = {evt.name}
+                            description = {evt.priceRange}
+                            href = {evt.eventUrl}>
+                        </lightning-carousel-image>
+                    </template>
+                </lightning-carousel>
+            </template>
+        </lightning-layout>
+    </lightning-card>
+</template>
